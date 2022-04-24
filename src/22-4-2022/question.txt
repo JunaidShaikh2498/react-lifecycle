@@ -1,0 +1,101 @@
+What do you understand by Virtual DOM? Explain its working.
+
+=>
+i)  So firstly DOM (Document object Model) is a tree like structure which contains all the HTML elements within it and at it's root.
+    Whenever a change occurs in the DOM the whole structure is reloaded/re-rendered which consumes unnecessery resources,
+    to overcome this Virtual DOM was introduced in React.
+
+ii) It is an exact copy of the Real DOM and there are 2 of them. Let's call it Fresh and Dirty Virtual DOM.
+    So whenever a change occurs on the page rather than reloadin the whole page the Dirty Virtual Dom changes its state. Then it is compared to the Fresh virtual DOM via Diffing algorithm which identifies the differences between nodes of the DOM. Then after changes are made the only part which changed is updated in the real DOM and rest is left unchanged. 
+    This whole process is known as reconciliation.
+
+
+Why can’t browsers read JSX?
+=>
+i)  React is written using a combination of html and javascript. Browsers are built in such a way that they
+    understand plain javascript. As JSX is an extension of javascript it is not possible for them to understand JSX.
+
+ii) So react engine converts the JSX to ES6 JS and then uses a trans-compiler known as Babel which converts
+    ES6 JavaScript to ES5 JavaScript which can be understood by the browser engines.
+
+
+What is the purpose of render() in React.
+=>
+i)  In ReactJs there are 2 types of component structures. - Functional component and Class component.
+
+ii) Functional component return the JSX directly by using return but it is not the case for Class component.
+
+iii) In class component render() method is used to display the UI of the DOM structure which if not called 
+     nothing will be displayed on the browser.
+
+
+
+Differentiate between states and props.
+=>
+
+i) States are object values inside a component which are used for the displaying of the UI. 
+ii) States are declared inside a particular component which they belong to.
+iii) States are mutable and can be changed by any event on that particular component.
+
+i) Props are values in the form of object or array which are passed from parent comp to child comp.
+ii) When child comp accepts props from parent it is form of object which is then destructured and used in child.
+iii) Props are immutable in child i.e only the change in Parent state will change the props inside the child comp.
+
+
+How can you update the state of a component?
+=>
+We can change state in both Functional as well as in child components:
+
+Child component:
+i)  When we declare state in constructor method in child component we can modify that state using this.setState() method.
+ii) This is achieved by using the above method inside an event trigger method like onClick();
+iii)The trigger method is then bound to the class and when it is called then this.setState() will run inside that and
+    modify the state.
+
+Functional component:
+
+i)  Functional components do not use setState method instead they use hooks for the declaration as well as modification of the states.
+ii) useState() React hook is used for achieving this which takes in 2 parameters first state name and second state modify method.
+iii)As mentioned above whenever an event is triggered then the state modify method will be called from the trigger method and modify the state.
+
+
+
+Explain the lifecycle methods of React components in detail.
+
+=> The React class component has 3 phases : Mounting phase, Updating phase and Unmounting phase.
+
+1) Mounting phase: When a component is loaded whenver the application starts it is the mounting phase of the component. It has 4 lifecyle methods:
+    i) constructor(): It is the method where an instance of the class component is invoked for declaring the state objects as well as binding event
+                      trigger methods to the class.
+
+    ii) getDerivedStatesFromProps(): When the state of a child component is dependent on the props value passed from the parent this method is called 
+                                     for using the props values in the child component.
+
+    iii) render(): This is a mandatory method inside the class component without which the UI of the html cannot be displayed on the browser.
+                   This method is called after all the states have been declared and it is time to display the UI.
+
+    iv) componentDidMount(): This method is called whenever the mounting of the component is completed in the browser window. Thus this method 
+                             can be used for validation of the mounting of the component.
+
+2) Updating phase: Whenever the state of the component changes via any event on the browser the updating phase occurs for the component. It has 5 lifecyle methods:
+
+    i) getDerivedStatesFromProps(): As mentioned above the state value will change if the parent state changes and it will be conveyd through props.
+                                    Thus when the value of props changes the render() method will be called again and the state will be modified.
+
+    ii) shouldComponentUpdate(): When there is a state modification the render() method will be called. But if we need to update the state for a specific
+                                 condition only we can call this method. When called the component will update according to the condition provided in this method.
+
+    iii) render(): Like in mounting phase this is used to re-render the component when the state updates. The render method is always called when the state is
+                   updated or when the parent state is updated for then the child render() will be called even if there is no state change in itself.
+
+    iv) getSnapshotBeforeUpdate(): This method is called whenever we need to record the previous state value before its update. It takes in 2 params prevState and nextState.
+                                   After it is called the new updated state and previous state will be stored in it.
+
+    v)  componentDidUpdate(): This method is called whenever the updating of state of the component is completed in the browser window. Thus this method 
+                              can be used for validation of the state modification of the component.
+
+3)  Unmounting phase : This phase is that when the component is going to be removed or unmounted form the browser. It has a single lifecycle method.
+
+    i) componentWillUnmount(): This method is called just before the component will be unmounted from the browser window. Thus we can use it for validation or for  
+                               recording last state of the component.
+             
