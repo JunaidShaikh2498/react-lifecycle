@@ -1,11 +1,10 @@
 import React from "react";
-import Parent from "./Parent";
-
+import Hooks from "./Hooks/Hooks";
 
 function App() {
   return (
     <div>
-        <Parent/>
+        <Hooks/>
     </div>
   );
 }
