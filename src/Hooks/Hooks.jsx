@@ -9,7 +9,7 @@ const Hooks = ()=>{
     const setObjState=()=>{
         setObj((prevState)=>({...prevState,course:"MERN"}))
     }
-
+    
     return(
         <div>
             <h2>{name}</h2>
